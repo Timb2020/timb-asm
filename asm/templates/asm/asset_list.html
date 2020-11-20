@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>TIMB|ASM</title>
+</head>
+<body>
+    <H2>Assets Due for Disposal:  {{Dday}}</H2>
+    <form method="get">
+        {{assetfilter.form}}
+        <button type="submit">Search</button>
+    </form>
+    
+    <div>
+    
+        <table class= "table">
+            <thead>
+                <tr>
+                    <th scope="col">Asset name</th>
+                    <th scope="col">Serial number</th>
+                    <th scope="col">Asset number</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Issued To</th>
+                    <th scope="col">Date of Purchase</th>
+                    <th scope="col">Date of Disposal</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+               
+                    {% for Asset in Assets%}
+        <tr>
+            <td>{{Asset.AssetName}}</td>
+            <td>{{Asset.SerialNum}}</td>    
+            <td>{{Asset.AssetNum}} </td>
+            <td>{{Asset.Description}}</td>
+            <td>{{Asset.IssuedTo}}</td>
+            <td>{{Asset.DatePurch | date:"d M Y"}}</td>
+            <td>{{Asset.DisposalDate | date:"d M Y"}}</td>
+            </tr>
+                    {%endfor%}
+              
+        </tbody>
+        </table>   
+        
+    </div>
+ 
+    <br>
+    <a href="{%url 'add_asset'%}">AddNew</a>
+    <br>
+           
+</body>
+</html>

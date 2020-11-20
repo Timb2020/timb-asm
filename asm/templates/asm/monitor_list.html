@@ -1,0 +1,32 @@
+{%block content%}
+<table class= "table">
+        <thead>
+            <tr>
+                <th scope="col">Asset name</th>
+                <th scope="col">Serial number</th>
+                <th scope="col">Asset number</th>
+                <th scope="col">Description</th>
+                <th scope="col">Issued To</th>
+                <th scope="col">Date of Purchase</th>
+                <th scope="col">Date of Disposal</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+           
+                {% for monitor in monitors%}
+    <tr>
+        <td>{{monitor.AssetName}}</td>
+        <td>{{monitor.SerialNum}}</td>    
+        <td>{{monitor.AssetNum}} </td>
+        <td>{{monitor.Description}}</td>
+        <td>{{monitor.IssuedTo}}</td>
+        <td>{{monitor.DatePurch | date:"d M Y"}}</td>
+        <td>{{monitor.DisposalDate | date:"d M Y"}}</td>
+        </tr>
+                {%endfor%}
+          
+    </tbody>
+    </table>
+
+{%endblock%}
