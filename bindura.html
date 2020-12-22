@@ -1,0 +1,127 @@
+{%extends 'asm/base.html'%}
+{%load static%}
+{%block content%} 
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor">TIMB_ASM</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{%url 'asset_list'%}">Home</a></li>
+                        <li class="breadcrumb-item active">ADD ASSETS</li>
+                    </ol>
+                </div>
+                <div>
+                    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+
+               
+               <style>
+                .button {
+display: inline-block;
+padding: 15px 25px;
+font-size: 24px;
+cursor: pointer;
+text-align: center;
+text-decoration: none;
+outline: none;
+color: #fff;
+background-color:#13991e ;
+border: none;
+border-radius: 15px;
+box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #317034}
+
+.button:active {
+background-color: #317034;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
+                  </style>
+
+   
+                <p> <strong> To add an asset :        </strong> <a href="{%url 'add_asset'%}"> <input class="button" type="button" value="Add Asset" /> </a></p>
+              </form>
+
+              
+<style>
+table {
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
+
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+tr:nth-child(even) {
+background-color: #dddddd;
+}
+</style>
+
+
+    
+    <div>
+    
+        <table class= "table">
+            <thead>
+                <tr>
+                    <th scope="col">Asset name</th>
+                    <th scope="col">Serial number</th>
+                    <th scope="col">Asset number</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Issued To</th>
+                    <th scope="col">Date of Purchase</th>
+                    <th scope="col">Date of Disposal</th>
+                   
+    
+                </tr>
+            </thead>
+            <tbody>
+               
+                {% for asset in assets %}
+                <tr>
+                    <td>{{asset.AssetName}}</td>
+                    <td>{{asset.SerialNum}}</td>    
+                    <td>{{asset.AssetNum}} </td>
+                    <td>{{asset.Description}}</td>
+                    <td>{{asset.IssuedTo}}</td>
+                    <td>{{asset.DatePurch | date:"d M Y"}}</td>
+                    <td>{{asset.DisposalDate | date:"d M Y"}}</td>
+             
+                    </tr>
+                            {%endfor%}
+        </tbody>
+        </table>   
+        
+    </div>
+ 
+    <br>
+   {%endblock%}
