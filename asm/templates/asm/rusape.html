@@ -1,8 +1,6 @@
 {%extends 'asm/base.html'%}
-{% load static %}
-{%block content%}
-
-
+{%load static%}
+{%block content%} 
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -40,8 +38,8 @@
                 <!-- ============================================================== -->
 
                
-                <style>
-                    .button {
+               <style>
+                .button {
 display: inline-block;
 padding: 15px 25px;
 font-size: 24px;
@@ -63,39 +61,32 @@ background-color: #317034;
 box-shadow: 0 5px #666;
 transform: translateY(4px);
 }
-                      </style>
+                  </style>
 
-       
-                    <p> <strong> To add an asset :        </strong><input class="button" type="button" onclick="window.location.href='add asset.html';" value="Add Asset" /></p>
-                  </form>
+   
+                <p> <strong> To add an asset :        </strong> <a href="{%url 'add_asset'%}"> <input class="button" type="button" value="Add Asset" /> </a></p>
+              </form>
 
-                  <br>
-                  <br>
-                  <br>
+              
 <style>
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 100%;
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+background-color: #dddddd;
 }
 </style>
 
 
-   <br>
-    <form method="get">
-        {{assetfilter.form.as_table}}
-        <button type="submit">Search</button>
-    </form>
     
     <div>
     
@@ -109,33 +100,28 @@ tr:nth-child(even) {
                     <th scope="col">Issued To</th>
                     <th scope="col">Date of Purchase</th>
                     <th scope="col">Date of Disposal</th>
-                    <th>Edit</th>
                    
     
                 </tr>
             </thead>
             <tbody>
                
-                    {% for Asset in Assets%}
-        <tr>
-            <td>{{Asset.AssetName}}</td>
-            <td>{{Asset.SerialNum}}</td>    
-            <td>{{Asset.AssetNum}} </td>
-            <td>{{Asset.Description}}</td>
-            <td>{{Asset.IssuedTo}}</td>
-            <td>{{Asset.DatePurch | date:"d M Y"}}</td>
-            <td>{{Asset.DisposalDate | date:"d M Y"}}</td>
-            <td><a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit"><a href="{%url 'edit'%}"><i class="ti-marker-alt"></i></a></a> 
-            <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td>
-     
-            </tr>
-                    {%endfor%}
-              
+                {% for asset in assets %}
+                <tr>
+                    <td>{{asset.AssetName}}</td>
+                    <td>{{asset.SerialNum}}</td>    
+                    <td>{{asset.AssetNum}} </td>
+                    <td>{{asset.Description}}</td>
+                    <td>{{asset.IssuedTo}}</td>
+                    <td>{{asset.DatePurch | date:"d M Y"}}</td>
+                    <td>{{asset.DisposalDate | date:"d M Y"}}</td>
+             
+                    </tr>
+                            {%endfor%}
         </tbody>
         </table>   
         
     </div>
  
-   <br>
-    
-    {%endblock%}
+    <br>
+  {%endblock%}

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'asm.apps.AsmConfig',
-    'django_filters'
+    'django_filters',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -128,11 +129,15 @@ STATIC_URL = '/static/'
 
 #SMTP config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '172.18.170.6'
-EMAIL_PORT= 25
-EMAIL_USE_TLS = True
+EMAIL_HOST = '172.18.170.4'
+EMAIL_PORT= 465
+EMAIL_USE_TLS =False
+EMAIL_USE_SSL= True
 EMAIL_HOST_USER= "dmutemachani@timb.co.zw"
 EMAIL_HOST_PASSWORD="Dannydee1"
+
+
+DEFAULT_FROM_EMAIL = ['EMAIL_HOST_USER']
 
 
 
