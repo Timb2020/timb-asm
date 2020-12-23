@@ -1,0 +1,220 @@
+{%extends 'asm/base.html'%}
+{%load static%}
+{%block content%} 
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor"> TIMB Asset Managment System</h3>
+                </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+                <br>
+                <br>
+                <!-- <div>
+                    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                </div> -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                 <!-- Row -->
+                 <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Row -->
+                                <div class="row">
+                                    <div class="col-8"><h2>0000      <i></i><span style="color:rgb(63, 223, 84); font-size:50px;">&#43;</span></i></h2>
+                                        <h6>Recently Added</h6></div>
+                                    <div class="col-4 align-self-center text-right  p-l-0">
+                                        <div id="sparklinedash3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Row -->
+                                <div class="row">
+                                    <div class="col-8"><h2>0000      <i></i><span style="color:green; font-size:50px;">&#9745;</span></i></h2>
+                                        <h6>Up To Date</h6></div>
+                                    <div class="col-4 align-self-center text-right p-l-0">
+                                        <div id="sparklinedash"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Row -->
+                                <div class="row">
+                                    <div class="col-8"><h2>{{Dday}} <i></i><span style="color:orange; font-size:50px ;">&#9888;</span></i></h2>
+                                        <h6>To Be Disposed</h6></div>
+                                    <div class="col-4 align-self-center text-right p-l-0">
+                                        <div id="sparklinedash2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                        <div class="row">
+                                            <div class="col-8"><h2>{{Dday}}<i></i><span style="color:red; font-size:50px ;">&#9888;</span></i></h2>
+                                                <h6>Overdue Disposal</h6></div>
+                                            <div class="col-4 align-self-center text-right p-l-0">
+                                                <div id="sparklinedash4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form>
+                            <style>
+                            .button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:#13991e ;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #317034}
+
+.button:active {
+  background-color: #317034;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+                              </style>
+
+               
+                            <p> <strong> To add an asset :        </strong><input class="button" type="button" onclick="window.location.href='add asset.html';" value="Add Asset" /></p>
+                          </form>
+                          <br>
+                          <br>
+         
+                          <div class="card card-default">
+                            <div class="card-header">
+                                <div class="card-actions">
+                                    <a class="" data-action="collapse"><i class="ti-minus"></i></a>
+                                    <a class="btn-minimize" data-action="expand"><i class="mdi mdi-arrow-expand"></i></a>
+                                    <a class="btn-close" data-action="close"><i class="ti-close"></i></a>
+                                </div>
+                                <h4 class="card-title m-b-0">Assets Overview</h4>
+                            </div>
+                            <div class="card-body collapse show">
+                                <div class="table-responsive">
+                                    <table class="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                
+                                                <th>Photo</th>
+                                                
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Office Chairs</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair.jpg" alt="iMac" width="80">
+                                                </td>
+                                                
+                                                <td>10</td>
+                                                <td>
+                                                    <span class="label label-success font-weight-100"> Up to date</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ti-marker-alt" onclick="window.location.href='add asset.html';"></i></a> <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Office Desks</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair2.jpg" alt="iPhone" width="80">
+                                                </td>
+                                                
+                                                <td>17</td>
+                                                <td>
+                                                    <span class="label label-warning font-weight-100">6 To be Disposed</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ti-marker-alt" onclick="window.location.href='add asset.html';"></i></a> <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Office Cabinets</td>
+                                                <td>
+                                                    <img src="../assets/images/gallery/chair3.jpg" alt="apple_watch" width="80">
+                                                </td>
+                                                
+                                                <td>20</td>
+                                                <td>
+                                                    <span class="label label-success font-weight-100">Up to date</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ti-marker-alt" onclick="window.location.href='add asset.html';"></i></a> <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vehicles</td>
+                                                <td>
+                                                    <img src="{%static 'assets/images/gallery/chair4.jpg'%}" alt="mac_mouse" width="80">
+                                                </td>
+                                               
+                                                <td>17</td>
+                                                <td>
+                                                    <span class="label label-danger font-weight-100"> 2 Disposals Overdue</span>
+                                                </td>
+                                                <td><a href="javascript:void(0)" class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit"><i class="ti-marker-alt" onclick="window.location.href='add asset.html';"></i></a> <a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        
+    
+<br>
+<br>  
+
+{%endblock%}
