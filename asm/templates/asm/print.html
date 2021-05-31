@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print PDF</title>
+
+    <style>
+        @page{
+            size: landscape;
+            margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+
+            @top-center{
+                content: "TIMB";
+            }
+    
+
+        }
+    </style>
+</head>
+<body>
+
+   <h2>Asset List</h2>
+   <table class= "table">
+    <table class= "table">
+        <thead>
+            <tr>
+                <th scope="col">Asset name</th>
+                <th scope="col">Serial number</th>
+                <th scope="col">Asset number</th>
+                <th scope="col">Description</th>
+                <th scope="col">Issued To</th>'
+                <th scope="col">Date of Purchase</th>
+                <th scope="col">Date of Disposal</th>
+        
+               
+
+            </tr>
+        </thead>
+        <tbody>
+           
+            {% for instance in queryset%}
+            <tr>
+                <td>{{instance.AssetName}}</td>
+                <td>{{instance.SerialNum}}</td>    
+                <td>{{instance.AssetNum}} </td>
+                <td>{{instance.Description}}</td>
+                <td>{{instance.IssuedTo}}</td>
+                <td>{{instace.DatePurch | date:"d M Y"}}</td>
+                <td>{{instance.DisposalDate | date:"d M Y"}}</td>
+        
+        </tr>
+                {%endfor%}
+          
+    </tbody>
+    </table>   
+</body>
+</html>

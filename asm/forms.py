@@ -14,3 +14,12 @@ class add_assetForm(ModelForm):
     class Meta:
         model= Asset
         fields = '__all__'
+
+class ReportForm(forms.ModelForm):
+    export_to_CSV=forms.BooleanField(required=False)
+    export_to_PDF=forms.BooleanField(required=False)
+    class Meta:
+        model = Asset
+        fields=['AssetName','Description','RegionalOffice','Status', 'DatePurch', 'DisposalDate']
+
+

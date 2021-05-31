@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
 
 REGIONAL_OFFICE =(
     ('HARARE', 'Harare'),
@@ -17,16 +18,17 @@ STATUS_CHOICE =(
 )
 
 class Asset(models.Model):
-    AssetName= models.CharField(max_length=100)
+    AssetName= models.CharField(max_length=100, null= True, blank = True)
     SerialNum= models.CharField(max_length=100, blank = True, null= True)
     AssetNum= models.CharField(max_length=100, blank=True, null=True)
-    Description= models.CharField(max_length=100)
-    Office= models.CharField(max_length=100)
-    IssuedTo= models.CharField(max_length=100)
-    DatePurch= models.DateField(default=timezone.now)
-    DisposalDate=models.DateField()
-    RegionalOffice = models.CharField(max_length=15, choices=REGIONAL_OFFICE, default='Harare')
-    Status=models.CharField(max_length=15, choices=STATUS_CHOICE, default='working')
+    Description= models.CharField(max_length=100, null=True, blank = True)
+    Office= models.CharField(max_length=100, null=True, blank = True)
+    IssuedTo= models.CharField(max_length=100, null=True, blank = True)
+    DatePurch= models.DateField(default=timezone.now, blank = True)
+    DisposalDate=models.DateField(blank = True)
+    RegionalOffice = models.CharField(max_length=15, choices=REGIONAL_OFFICE, default='Harare', blank = True)
+    Status=models.CharField(max_length=15, choices=STATUS_CHOICE, default='working', blank = True)
+    
 
     def publish(self):
         self.AssetName()

@@ -26,7 +26,10 @@ urlpatterns =[
     path('Assets/laptops', views.laptops, name='laptops'),
     path('Assets/Due', views.due, name='due'),
     path('sent', views.notification, name='sent'),
-
+    path('report', views.report, name='report'), 
+    #path('export-csv', views.export_csv, name='export-csv'),
+    #path('print', views.export_pdf, name='export-pdf'),
+ 
 
    
 

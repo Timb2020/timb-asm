@@ -1,32 +1,19 @@
 #django imports
-from django import http
-from django.db.models.query import InstanceCheckMeta
 from django.shortcuts import render, redirect , get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
 from django.http import HttpResponse
-from django.template.loader import render_to_string
-from weasyprint import HTML
-import datetime
-from django.views.generic import View
-import csv
-import xlwt 
-import tempfile
-
-
 
 
 #my imports 
 #from resources import AssetResource
 from tablib import Dataset
-from .forms import registerForm,add_assetForm, ReportForm
-from .filters import AssetFilter, ReportFilter
+from .forms import registerForm,add_assetForm
+from .filters import AssetFilter
 from .models import Asset
 from django.core.mail import send_mail
-from django.contrib.auth import get_user_model
-
 
 def notification (request):
     send_mail('hello', 'this is a test email','dmutemachani@timb.co.zw',['dmutemachani@timb.co.zw'], fail_silently=False)
@@ -217,57 +204,3 @@ def logOut(request):
         logout(request)
         return redirect('login')
 
-#report-builder
-def report(request):
-   header='Report Generator'
-   form = ReportForm(request.POST or None)
-   queryset=Asset.objects.all()
-   context={
-       'header':header,
-       'form':form,
-       'queryset': queryset,
-    }
-   if request.method=='POST':
-       #filter for form 
-       queryset=Asset.objects.filter(AssetName__icontains=form['AssetName'].value(),Description__icontains=form['Description'].value(),RegionalOffice__icontains=form['RegionalOffice'].value(),Status__icontains=form['Status'].value(),DatePurch__icontains=form['DatePurch'].value(),DisposalDate__icontains=form['DisposalDate'].value())
-       #Export to Csv
-       if form['export_to_CSV'].value()==True:
-          response= HttpResponse(content_type='text/csv')
-          response['Content-Disposition']='attachment; filename=Asset_Report' +\
-            str(datetime.datetime.now())+'csv'
-
-
-          writer= csv.writer(response)
-          writer.writerow(['AssetName', 'Description','RegionalOffice', 'Status', 'DatePurch', 'DisposalDate'])
-          Assets=Asset.objects.all()
-          instance= queryset
-          for asset in instance:
-           writer.writerow([asset.AssetName, asset.Description,asset.RegionalOffice, asset.Status, asset.DatePurch, asset.DisposalDate])
-          return response
-           #export to PDF
-       if form['export_to_PDF'].value()== True:
-               response= HttpResponse(content_type='text/pdf')
-               response['Content-Disposition']= 'inline;attachment; filename=Asset_Report'+\
-                   str(datetime.datetime.now())+'pdf'
-               response ['Content-Transfer-Encoding']='binary'
-               queryset=Asset.objects.filter(AssetName__icontains=form['AssetName'].value(),Description__icontains=form['Description'].value(),RegionalOffice__icontains=form['RegionalOffice'].value(),Status__icontains=form['Status'].value(),DatePurch__icontains=form['DatePurch'].value(),DisposalDate__icontains=form['DisposalDate'].value())
-               instance= queryset
-               html_string=render_to_string('asm/print.html',{'queryset':queryset})
-               html=HTML(string=html_string)
-               result=html.write_pdf()
-               with tempfile.NamedTemporaryFile(delete=True) as output:
-                   output.write(result)
-                   output.flush()
-                   output=open(output.name,'rb')
-                   response.write(output.read())
-
-               return response
-
-
-       context={
-       'header':header,
-       'form':form,
-       'queryset': queryset,
-        
-       }
-   return render(request, "asm/report.html", context)

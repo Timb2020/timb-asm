@@ -26,7 +26,7 @@ urlpatterns =[
     path('Assets/laptops', views.laptops, name='laptops'),
     path('Assets/Due', views.due, name='due'),
     path('sent', views.notification, name='sent'),
-    path('Asset/edit', views.edit_asset, name='edit'),
+    path('Asset/edit', views.edit_asset, name='edit_asset'),
 
    
 

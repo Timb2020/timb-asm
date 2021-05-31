@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'asm.apps.AsmConfig',
     'django_filters',
     'import_export',
+    'bootstrapform',
+    'crispy_forms',
+ 
+    
 ]
 
 MIDDLEWARE = [
